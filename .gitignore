@@ -11,3 +11,7 @@ frontend/dist/
 # General
 .DS_Store
 *.env
+
+# Ignore Python cache files everywhere
+__pycache__/
+*.py[cod]

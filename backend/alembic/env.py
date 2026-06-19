@@ -9,6 +9,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from app.database import Base
 from app.models import user  # import all models so Alembic sees them
+from app.models import food  
+from app.models import patient
+from app.models import meal_plan 
 
 config = context.config
 if config.config_file_name is not None:

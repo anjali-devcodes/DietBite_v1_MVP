@@ -1,27 +1,39 @@
+import { AppLayout } from '../../components/layout/AppLayout'
+import { Card, CardBody } from '../../components/ui/Card'
 import { useAuth } from '../../hooks/useAuth'
-import { Button } from '../../components/ui/Button'
+
+const QUICK_ACTIONS = [
+  { label: 'Food Search', icon: '🔍', desc: 'Search Indian foods' },
+  { label: 'Nutrient Calculator', icon: '🧮', desc: 'Calculate nutrition' },
+  { label: 'Daily Tracker', icon: '📅', desc: 'Log your meals' },
+  { label: 'My Progress', icon: '📈', desc: 'View your history' },
+]
 
 export default function UserDashboard() {
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-800">My Dashboard</h1>
-            <p className="text-gray-500 text-sm mt-1">Welcome, {user?.full_name}</p>
-          </div>
-          <Button variant="secondary" onClick={logout}>Logout</Button>
+    <AppLayout>
+      <div className="flex flex-col gap-6">
+        <div>
+          <h1 className="text-xl font-bold text-gray-800">Welcome, {user?.full_name} 👋</h1>
+          <p className="text-sm text-gray-400 mt-0.5">Track your nutrition today</p>
         </div>
-        <div className="grid grid-cols-3 gap-4">
-          {['Food Search', 'Nutrient Calculator', 'Daily Tracker'].map((item) => (
-            <div key={item} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-              <h3 className="font-semibold text-gray-700">{item}</h3>
-              <p className="text-xs text-gray-400 mt-1">Coming soon</p>
-            </div>
+        <div className="grid grid-cols-2 gap-4">
+          {QUICK_ACTIONS.map(({ label, icon, desc }) => (
+            <Card key={label} className="hover:border-green-200 transition-colors cursor-pointer">
+              <CardBody className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-2xl">
+                  {icon}
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-800">{label}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
+                </div>
+              </CardBody>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </AppLayout>
   )
 }
