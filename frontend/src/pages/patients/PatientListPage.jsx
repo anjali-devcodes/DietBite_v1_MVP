@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { patientService } from '../../api/patientService'
 import { useDebounce } from '../../hooks/useDebounce'
-import { AppLayout } from '../../components/layout/AppLayout'
+import { AppLayout } from '../../components/Layout/AppLayout'
 import { Card, CardBody } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
 import { Alert } from '../../components/ui/Alert'
@@ -26,6 +26,7 @@ const GOAL_COLORS = {
 
 export default function PatientListPage() {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebounce(search, 350)
 
@@ -51,6 +52,14 @@ export default function PatientListPage() {
 
   useEffect(() => { fetchPatients() }, [fetchPatients])
 
+  // Lets the dashboard's "Add Patient" quick action deep-link straight into the create form.
+  useEffect(() => {
+    if (searchParams.get('new') === 'true') {
+      setShowForm(true)
+      setSearchParams({}, { replace: true })
+    }
+  }, [searchParams, setSearchParams])
+
   const handleCreate = async (payload) => {
     await patientService.create(payload)
     setShowForm(false)
@@ -60,7 +69,7 @@ export default function PatientListPage() {
   return (
     <AppLayout>
       <div className="flex flex-col gap-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
             <h1 className="text-xl font-bold text-gray-800">My Patients</h1>
             <p className="text-sm text-gray-400 mt-0.5">{total} patient{total !== 1 ? 's' : ''} under your care</p>
@@ -79,7 +88,7 @@ export default function PatientListPage() {
         <Alert type="error" message={error} />
 
         {loading ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="bg-gray-100 rounded-xl h-36 animate-pulse" />
             ))}
@@ -94,7 +103,7 @@ export default function PatientListPage() {
             </CardBody>
           </Card>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {patients.map((p) => (
               <button
                 key={p.id}

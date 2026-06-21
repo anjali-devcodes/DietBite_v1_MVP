@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { mealPlanService } from '../../api/mealPlanService'
-import { AppLayout } from '../../components/layout/AppLayout'
+import { AppLayout } from '../../components/Layout/AppLayout'
 import { Card, CardBody } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
 import { Alert } from '../../components/ui/Alert'
@@ -83,7 +83,7 @@ export default function MealPlanDetailPage() {
     <AppLayout>
       <div className="flex flex-col gap-6 max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <button onClick={() => navigate(-1)} className="text-sm text-gray-400 hover:text-gray-600">
             ← Back
           </button>

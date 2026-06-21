@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { userService } from '../api/userService'
-import { AppLayout } from '../components/layout/AppLayout'
+import { AppLayout } from '../components/Layout/AppLayout'
 import { Card, CardHeader, CardBody } from '../components/ui/Card'
 import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'

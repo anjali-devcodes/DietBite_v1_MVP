@@ -51,7 +51,7 @@ export function MealPlanList({ patientId }) {
 
   return (
     <Card>
-      <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h2 className="text-base font-semibold text-gray-800">Meal Plans</h2>
           <p className="text-sm text-gray-400 mt-0.5">Structured diet plans for this patient</p>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { patientService } from '../../api/patientService'
-import { AppLayout } from '../../components/layout/AppLayout'
+import { AppLayout } from '../../components/Layout/AppLayout'
 import { Card, CardHeader, CardBody } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
 import { Alert } from '../../components/ui/Alert'
@@ -106,7 +106,7 @@ export default function PatientDetailPage() {
     <AppLayout>
       <div className="flex flex-col gap-6 max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <button onClick={() => navigate('/patients')} className="text-sm text-gray-400 hover:text-gray-600">
             ← Back to Patients
           </button>
@@ -119,7 +119,7 @@ export default function PatientDetailPage() {
         {/* Profile Summary */}
         <Card>
           <CardBody>
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between flex-wrap gap-2">
               <div>
                 <h1 className="text-xl font-bold text-gray-800">{patient.full_name}</h1>
                 <p className="text-sm text-gray-400 mt-0.5">
@@ -132,7 +132,7 @@ export default function PatientDetailPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mt-5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5">
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-400">Current Weight</p>
                 <p className="text-lg font-semibold text-gray-800">{patient.current_weight_kg ?? '—'} kg</p>
@@ -155,7 +155,7 @@ export default function PatientDetailPage() {
             </div>
 
             {(patient.medical_conditions || patient.dietary_preferences) && (
-              <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
                 {patient.medical_conditions && (
                   <div>
                     <p className="text-xs text-gray-400 mb-1">Medical Conditions</p>
@@ -188,14 +188,14 @@ export default function PatientDetailPage() {
           />
           <CardBody>
             {/* Add new measurement */}
-            <form onSubmit={handleAddMeasurement} className="flex items-end gap-3 mb-5 pb-5 border-b border-gray-100">
-              <div className="w-32">
+            <form onSubmit={handleAddMeasurement} className="flex flex-col sm:flex-row sm:items-end gap-3 mb-5 pb-5 border-b border-gray-100">
+              <div className="w-full sm:w-32">
                 <Input label="New Weight (kg)" type="number" step="0.1" min="0" value={newWeight} onChange={(e) => setNewWeight(e.target.value)} />
               </div>
               <div className="flex-1">
                 <Input label="Notes (optional)" value={newNotes} onChange={(e) => setNewNotes(e.target.value)} placeholder="e.g. Week 4 check-in" />
               </div>
-              <Button type="submit" loading={addingMeasurement}>Log Measurement</Button>
+              <Button type="submit" loading={addingMeasurement} className="w-full sm:w-auto">Log Measurement</Button>
             </form>
             {measurementError && <Alert type="error" message={measurementError} />}
 
@@ -207,12 +207,12 @@ export default function PatientDetailPage() {
                 {[...patient.measurements].reverse().map((m) => {
                   const info = bmiCategory(m.bmi)
                   return (
-                    <div key={m.id} className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-3">
+                    <div key={m.id} className="flex items-center justify-between flex-wrap gap-2 bg-gray-50 rounded-lg px-4 py-3">
                       <div>
                         <p className="text-sm font-medium text-gray-800">{m.weight_kg} kg</p>
                         {m.notes && <p className="text-xs text-gray-400">{m.notes}</p>}
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-4 flex-wrap">
                         {m.bmi && (
                           <span className={`text-xs ${info?.color}`}>BMI {m.bmi} · {info?.label}</span>
                         )}

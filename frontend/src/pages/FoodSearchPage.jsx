@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { foodService } from '../api/foodService'
 import { useDebounce } from '../hooks/useDebounce'
-import { AppLayout } from '../components/layout/AppLayout'
+import { AppLayout } from '../components/Layout/AppLayout'
 import { FoodCard } from '../components/food/FoodCard'
 import { FoodFilters } from '../components/food/FoodFilters'
 import { FoodDetailModal } from '../components/food/FoodDetailModal'
@@ -88,7 +88,7 @@ export default function FoodSearchPage() {
 
         {/* Results grid */}
         {loading ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="bg-gray-100 rounded-xl h-32 animate-pulse" />
             ))}
@@ -99,7 +99,7 @@ export default function FoodSearchPage() {
             <p className="text-sm">No foods match your search. Try different keywords or filters.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {foods.map((food) => (
               <FoodCard key={food.id} food={food} onClick={(f) => setSelectedFoodId(f.id)} />
             ))}

@@ -8,7 +8,7 @@ export function DayTotalsSummary({ totals }) {
   const macros = MACRO_KEYS.filter((k) => totals[k])
 
   return (
-    <div className="grid grid-cols-5 gap-2">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
       {macros.map((key) => {
         const data = totals[key]
         const meta = NUTRIENT_META[key]

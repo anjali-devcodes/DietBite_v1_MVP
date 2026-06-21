@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { adminService } from '../../api/adminService'
-import { AppLayout } from '../../components/layout/AppLayout'
+import { AppLayout } from '../../components/Layout/AppLayout'
 import { Card, CardHeader, CardBody } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
 import { Alert } from '../../components/ui/Alert'
@@ -75,7 +75,7 @@ export default function AdminUsersPage() {
     <AppLayout>
       <div className="flex flex-col gap-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <h1 className="text-xl font-bold text-gray-800">User Management</h1>
             <p className="text-sm text-gray-400 mt-0.5">{total} total users</p>

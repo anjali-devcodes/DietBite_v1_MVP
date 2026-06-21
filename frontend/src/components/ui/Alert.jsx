@@ -1,14 +1,23 @@
+import { Icon } from './Icon'
+
 const styles = {
-  success: 'bg-green-50 border-green-200 text-green-700',
-  error: 'bg-red-50 border-red-200 text-red-600',
-  info: 'bg-blue-50 border-blue-200 text-blue-700',
+  success: 'bg-success-50 border-success-600/20 text-success-700',
+  error: 'bg-danger-50 border-danger-600/20 text-danger-700',
+  info: 'bg-info-50 border-info-600/20 text-info-700',
+}
+
+const iconNames = {
+  success: 'check',
+  error: 'alertCircle',
+  info: 'info',
 }
 
 export function Alert({ type = 'info', message }) {
   if (!message) return null
   return (
-    <div className={`border rounded-lg px-4 py-3 text-sm ${styles[type]}`}>
-      {message}
+    <div className={`flex items-start gap-2 border rounded-md px-4 py-3 text-sm ${styles[type]}`}>
+      <Icon name={iconNames[type]} size={16} className="mt-0.5 flex-shrink-0" />
+      <span>{message}</span>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { foodService } from '../api/foodService'
-import { AppLayout } from '../components/layout/AppLayout'
+import { AppLayout } from '../components/Layout/AppLayout'
 import { Card, CardHeader, CardBody } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
 import { Alert } from '../components/ui/Alert'
@@ -67,9 +67,9 @@ export default function CalculatorPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left: Picker + Meal list */}
-          <div className="col-span-3 flex flex-col gap-4">
+          <div className="lg:col-span-3 flex flex-col gap-4">
             <Card>
               <CardHeader title="Add Foods" subtitle="Search and add items with quantity" />
               <CardBody>
@@ -91,8 +91,8 @@ export default function CalculatorPage() {
           </div>
 
           {/* Right: Totals */}
-          <div className="col-span-2">
-            <Card className="sticky top-6">
+          <div className="lg:col-span-2">
+            <Card className="lg:sticky lg:top-6">
               <CardHeader title="Nutrition Summary" subtitle={calculating ? 'Calculating...' : 'Combined totals'} />
               <CardBody>
                 <Alert type="error" message={error} />

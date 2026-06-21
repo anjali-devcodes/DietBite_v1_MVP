@@ -52,7 +52,7 @@ export function PatientForm({ initialData, onSubmit, onCancel, submitLabel = 'Cr
       {/* Basic Info */}
       <div>
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Basic Information</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input label="Full Name *" name="full_name" value={form.full_name} onChange={handleChange} required />
           <Input label="Age" name="age" type="number" min="0" value={form.age} onChange={handleChange} />
           <div className="flex flex-col gap-1">
@@ -73,7 +73,7 @@ export function PatientForm({ initialData, onSubmit, onCancel, submitLabel = 'Cr
       {/* Physical Stats */}
       <div>
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Physical Stats</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Input label="Height (cm)" name="height_cm" type="number" min="0" value={form.height_cm} onChange={handleChange} />
           <Input label="Current Weight (kg)" name="current_weight_kg" type="number" min="0" step="0.1" value={form.current_weight_kg} onChange={handleChange} />
           <Input label="Target Weight (kg)" name="target_weight_kg" type="number" min="0" step="0.1" value={form.target_weight_kg} onChange={handleChange} />
